@@ -11,6 +11,8 @@ DynamicObjectList::DynamicObjectList() {
 
 DynamicObjectList::~DynamicObjectList() {
     delete[] mList;
+    //for (size_t i = 0; i < mObjectCount; i++)
+    //    delete mList[i];
 }
 
 void DynamicObjectList::reserve(unsigned int capacity) {
