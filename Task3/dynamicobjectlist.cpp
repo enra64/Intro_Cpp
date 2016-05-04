@@ -10,9 +10,9 @@ DynamicObjectList::DynamicObjectList() {
 }
 
 DynamicObjectList::~DynamicObjectList() {
+    for (size_t i = 0; i < mObjectCount; i++)
+        delete mList[i];
     delete[] mList;
-    //for (size_t i = 0; i < mObjectCount; i++)
-    //    delete mList[i];
 }
 
 void DynamicObjectList::reserve(unsigned int capacity) {
@@ -53,25 +53,26 @@ Object *DynamicObjectList::createObject_back(char *name) {
 
 void DynamicObjectList::destroyObject(unsigned int position) {
     // position valid?
-    if (position < 0 || position >= mObjectCount) {
-        std::cerr << "invalid position for delete at " << position << std::endl;
+    if (position >= mObjectCount) {
+        std::cout << "WARNING: invalid position for delete at " << position << std::endl;
         return;
     }
 
     // delete object
     delete mList[position];
 
-    mObjectCount--;
 
     // close gap
-    for (size_t i = position; i < mObjectCount; i++)
+    for (size_t i = position; i < mObjectCount; i++) {
         mList[i] = mList[i + 1];
+    }
+    mObjectCount--;
 }
 
 Object *DynamicObjectList::getAt(unsigned int position) {
     // position valid?
-    if (position < 0 || position >= mObjectCount) {
-        std::cerr << "invalid position for access at " << position << std::endl;
+    if (position >= mObjectCount) {
+        //std::cerr << "invalid position for access at " << position << std::endl;
         return nullptr;
     }
 
