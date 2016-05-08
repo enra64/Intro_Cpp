@@ -19,12 +19,12 @@ public:
 
 
     /// Returns the number of valid objects.
-    unsigned int getCount() {
+    inline unsigned int getCount() {
         return mObjectCount;
     }
 
     /// Returns the capacity of the internal array.
-    unsigned int getCapacity() {
+    inline unsigned int getCapacity() {
         return mCapacity;
     }
 
