@@ -64,6 +64,6 @@ int& TestObject::elementCount()
 
 void TestObject::reverseArray()
 {
-    for(int i = 0; i < m_NumberOfStrings; i++)
-        swapStrings(m_ArrayOfStrings[i], m_ArrayOfStrings[m_NumberOfStrings - 1]);
+    for(int i = 0; i < m_NumberOfStrings / 2; i++)
+        swapStrings(m_ArrayOfStrings[i], m_ArrayOfStrings[m_NumberOfStrings - 1 - i]);
 }
