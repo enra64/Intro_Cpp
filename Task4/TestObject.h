@@ -24,6 +24,6 @@ public:
 
 private:
     void generateStrings();
-    std::string* m_ArrayOfStrings;
+    std::string* m_ArrayOfStrings = nullptr;
     int m_NumberOfStrings;
 };

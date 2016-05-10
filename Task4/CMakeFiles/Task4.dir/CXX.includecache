@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task4/RandomChar.cpp
+RandomChar.h
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task4/RandomChar.h
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task4/RandomChar.h
+stdlib.h
+-
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task4/TestObject.cpp
+TestObject.h
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task4/TestObject.h
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task4/TestObject.h
+iostream
+-
+string
+-
+cstdlib
+-
+RandomChar.h
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task4/RandomChar.h
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task4/program.cpp
+TestObject.h
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task4/TestObject.h
+

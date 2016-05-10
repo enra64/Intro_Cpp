@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -O0   CMakeFiles/Task4.dir/program.cpp.o CMakeFiles/Task4.dir/RandomChar.cpp.o CMakeFiles/Task4.dir/TestObject.cpp.o  -o Task4 
