@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
-/// This object class serves basically as dummy for an "any object".
-/// Later on we will learn different possibilities how we actually could store "anything" in here.
+
 class Object
 {
 public:
@@ -22,11 +21,11 @@ public:
   Object& operator+=(Object& o);
 
 private:
-
   char* m_name;
-
-  // Here could be YOUR data!
 };
-/// Implementiert den angegebenen und die verwandten Operatoren
-std::ostream& operator<< (std::ostream& stream, const Object&);
-// implement < and > for dynamicobjectlist.sort()
+
+std::ostream& operator<<(std::ostream& lhs, const Object& rhs);
+std::istream& operator>>(std::istream& lhs, Object& rhs);
+
+bool operator<(Object const& lhs, Object const& rhs);
+bool operator>(Object const& lhs, Object const& rhs);

@@ -1,8 +1,11 @@
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #endif
-#include "Object.h"
+#include "object.h"
+
 #include <iostream>
+#include <cstring>
+
 Object::Object(const char* name)
 {
 	m_name = new char[strlen(name)];
@@ -24,4 +27,16 @@ std::ostream& operator<< (std::ostream& stream, const Object& o)
 {
 	stream << "|-|" << o.GetName() << "|-|";
 	return stream;
+}
+
+std::istream& operator>>(std::istream& lhs, Object& rhs){
+
+}
+
+bool operator<(Object const& lhs, Object const& rhs){
+
+}
+
+bool operator>(Object const& lhs, Object const& rhs){
+
 }

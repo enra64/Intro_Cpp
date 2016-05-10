@@ -5,6 +5,8 @@
 * #define _CRT_SECURE_NO_WARNINGS
 * #endif
 *
+* Zum unterdrücken von Warnungen zu überholten Funktionen
+*
 * Nutzt wo moeglich const
 * implementiert die angegebenen Operatoren für dynamicObjectList und Object
 * Korrigiert den Runtimefehler in dynamicObjectList.sort()
@@ -19,6 +21,7 @@
 #include "dynamicobjectlist.hpp"
 #include "object.h"
 #include <string>
+#include <cstring>
 
 int main()
 {
