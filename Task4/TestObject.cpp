@@ -11,6 +11,7 @@ TestObject::TestObject(const int numberOfStrings)
 {
     m_NumberOfStrings = numberOfStrings;
     generateStrings();
+    generateStrings();
 }
 
 
@@ -21,6 +22,8 @@ TestObject::~TestObject()
 
 void TestObject::generateStrings()
 {
+    if(m_ArrayOfStrings != nullptr)
+        delete[] m_ArrayOfStrings;
     m_ArrayOfStrings = new std::string[m_NumberOfStrings];
 
     for (int i = 0; i < m_NumberOfStrings; i++)
