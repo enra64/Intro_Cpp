@@ -31,6 +31,7 @@ public:
   ///   After this call the capacity will be at least this value.
   ///   If the current capacity is equal or greater, nothing will happen.
   void reserve(unsigned int capacity);
+
   ///Shrink allocated memory to max 5*m_count, do not shrink under 2*m_count, only half or double m_capacity
   ///e.g. [1,2,3,4] with m_capacity=16 has to be shrunk to [1,2,3] with m_capacity=8 if the last element is removed
   /// shrink is called when an object is deleted from the list
@@ -78,7 +79,7 @@ public:
   ///    Index of the queried object. 
   /// \return
   ///    Object pointer at position or nullptr if there is no such object.
-  Object* getAt(unsigned int position);
+  Object* getAt(unsigned int position) const;
  
 
 private:
@@ -94,7 +95,7 @@ private:
 public:
 	/// Implementiert den jeweils angegebenen und die verwandten Operatoren
 	///push_back element
-	DynamicObjectList& operator+=(const Object&);
+	DynamicObjectList& operator+=(const Object& a);
 	///push_back element
 	DynamicObjectList& operator+=(Object&);
 	///merge lists, use multiset union semantic.

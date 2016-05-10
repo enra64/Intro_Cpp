@@ -30,6 +30,18 @@ Object &Object::operator-=(Object &o) {
     return <#initializer#>;
 }
 
+Object &Object::operator*=(Object &o) {
+    return <#initializer#>;
+}
+
+Object &Object::operator/=(Object &o) {
+    return <#initializer#>;
+}
+
+Object &Object::operator%=(Object &o) {
+    return <#initializer#>;
+}
+
 
 std::ostream &operator<<(std::ostream &stream, const Object &o) {
     stream << "|-|" << o.GetName() << "|-|";
@@ -40,6 +52,7 @@ std::istream &operator>>(std::istream &lhs, Object &rhs) {
 	char* n;
     lhs >> n;
     rhs.setName(n);
+    return lhs;
 }
 
 bool operator<(Object const &lhs, Object const &rhs) {

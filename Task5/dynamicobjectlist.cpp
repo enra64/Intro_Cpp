@@ -121,18 +121,93 @@ void DynamicObjectList::destroyObject(unsigned int position)
   m_list[m_count] = nullptr;
 }
 
-Object* DynamicObjectList::getAt(unsigned int position)
-{
-	// Does the element exist?
-	if (m_count <= position)
-	{
-		return nullptr;
-	}
-
-	return m_list[position];
-}
-/* todo*/
 Object* DynamicObjectList::getAt(const unsigned int position) const
 {
-		return nullptr;
+    // Does the element exist?
+    if (m_count <= position)
+    {
+        return nullptr;
+    }
+
+    return m_list[position];
 }
+
+DynamicObjectList &DynamicObjectList::operator+=(const Object &a) {
+    static Object* ap = new Object(a);
+    push_back(ap);
+    return *this;
+}
+
+DynamicObjectList &DynamicObjectList::operator+=(Object &a) {
+    push_back(&a);
+    return *this;
+}
+
+DynamicObjectList &DynamicObjectList::operator |= (const DynamicObjectList &o) {
+    DynamicObjectList a(*this);
+    DynamicObjectList b(o);
+
+    a.sort();
+    b.sort();
+
+    const unsigned int bothCap = a.getCapacity() + b.getCapacity();
+    this->reserve(bothCap);
+
+    unsigned int aPos = 0, bPos = 0;
+    for(int i = 0; i < bothCap; i++){
+        if(a[i] < b[i])
+            m_list[i] = &a[aPos++];
+        else
+            m_list[i] = &b[bPos++];
+    }
+    return *this;
+}
+
+// due to really good implementation, this lies within O(n^2)
+DynamicObjectList &DynamicObjectList::operator &= (const DynamicObjectList &o) {
+    // ~ O(3n)
+    DynamicObjectList a(*this);
+    DynamicObjectList b(*this);
+    DynamicObjectList c(o);
+
+    // O((3*sort)n + n)
+    a |= c;
+
+    // O(n^2?)
+    for(unsigned int i = 0; i < a.getCount(); i++){
+        bool exists = false;
+
+        for(unsigned int j = 0; j < b.getCount(); j++){
+            if(a[i] == b[j]){
+                exists = true;
+                break;
+            }
+        }
+
+        for(unsigned int k = 0; k < c.getCount(); k++){
+            if(a[i] == c[k] || exists){
+                exists = true;
+                break;
+            }
+        }
+
+        if(!exists){
+            a.destroyObject(i);
+        }
+    }
+
+    return *this;
+}
+
+Object &DynamicObjectList::operator[](const unsigned int i) const {
+    Object& bert = *getAt(i);
+    return bert;
+}
+
+Object &DynamicObjectList::operator[](const unsigned int i) {
+    Object& abc = *getAt(i);
+    return abc;
+}
+
+
+
