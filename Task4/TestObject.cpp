@@ -42,11 +42,11 @@ void TestObject::swapStrings(std::string& first, std::string& second)
     second = berthold;
 }
 
-std::string TestObject::readAccess(int index){
+const std::string TestObject::readAccess(const int index) const{
     return std::string(m_ArrayOfStrings[index]);
 }
 
-void TestObject::printAllStrings()
+void TestObject::printAllStrings() const
 {
     for (int i = 0; i < m_NumberOfStrings; i++)
     {
@@ -55,9 +55,8 @@ void TestObject::printAllStrings()
     std::cout << std::endl;
 }
 
-
 // return the number of elements
-int& TestObject::elementCount()
+const int& TestObject::elementCount() const
 {
     return m_NumberOfStrings;
 }

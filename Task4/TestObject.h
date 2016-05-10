@@ -1,10 +1,3 @@
-// This also has a few bugs and things missing.
-// TODO: Identify and fix errors / bugs / mistakes
-
-// TODO: Identify functions and return values that should be const
-// also see instructions in programm.cpp, if you haven't already
-
-//#include "TestObject.h"
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -20,14 +13,14 @@ public:
 
     void swapStrings(std::string& first, std::string& second);
 
-    void printAllStrings();
+    void printAllStrings() const;
 
     /// return the number of strings / elements
-    int& elementCount();
+    const int& elementCount() const;
 
     void reverseArray();
 
-    std::string readAccess(int index);
+    const std::string readAccess(int index) const;
 
 private:
     void generateStrings();

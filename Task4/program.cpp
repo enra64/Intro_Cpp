@@ -1,5 +1,3 @@
-
-#include <iostream>
 #include "TestObject.h"
 
 // ### Exercise 4 - References ###
@@ -14,12 +12,11 @@
 // TODO: debug and fix the errors.
 
 // Should return the reference to a sum of two ints
-// TODO: rewrite this as a template (without the bug)
-int& sumTheElements(int a, int b)
+template <typename type>
+type& sumTheElements(const type a, const type b)
 {
-    int r = a+ b;
-    int& result = r;
-    return result;
+    static type r = a + b;
+    return r;
 }
 
 int main()
@@ -64,7 +61,7 @@ int main()
 
     std::cout << std::endl << "total number of strings:" << std::endl;
    
-    int& TotalElementNumber = sumTheElements(referenceToAnObject.elementCount(), referenceToAnotherObject.elementCount());
+    const int& TotalElementNumber = sumTheElements(referenceToAnObject.elementCount(), referenceToAnotherObject.elementCount());
     std::cout << TotalElementNumber << std::endl;
 
 
