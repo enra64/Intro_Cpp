@@ -31,3 +31,6 @@
 ## File-based project format:
 *.ipr
 *.iws
+
+**/build/*
+**/build*
