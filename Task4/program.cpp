@@ -7,10 +7,6 @@
 // # Bonus 1: Think of a good use of pointers, then try to implement it with references. Document any problems, errors and solutions.
 // # Bonus 2: Make everything const correct.
 
-
-// This codes has quite a few (intentional) errors in it
-// TODO: debug and fix the errors.
-
 // Should return the reference to a sum of two ints
 template <typename type>
 type& sumTheElements(const type a, const type b)

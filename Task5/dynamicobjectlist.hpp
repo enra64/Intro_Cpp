@@ -1,19 +1,19 @@
 #pragma once
 
-#include "object.h"
+class Object;
 
 /// \brief A dynamic list of objects.
 ///
 /// It is similar to the inner workings of Java's ArrayList. Intentionally it is not possible to add already existing objects.
 /// This way DynamicObjectList is responsible for deleting and creating new objects.
-template<typename T>
 class DynamicObjectList {
 public:
     /// Constructs a new, empty dynamic object list.
-    DynamicObjectList<T>();
-    // implement copy constructor
-    // implement = operator
-    /*TODO*/
+    DynamicObjectList();
+    DynamicObjectList(const DynamicObjectList& o);
+
+    DynamicObjectList &operator= (const DynamicObjectList&);
+    DynamicObjectList &operator= (DynamicObjectList&&);
 
     /// Destroys the list
     ~DynamicObjectList();
@@ -22,9 +22,13 @@ public:
     void sort();
 
     /// Returns the number of valid objects.
-    unsigned int getCount() { return m_count; }
+    unsigned int getCount() const {
+        return m_count;
+    }
 
-    unsigned int getCapacity() { return m_capacity; }
+    unsigned int getCapacity() const {
+        return m_capacity;
+    }
 
 
     /// Reallocates the intern array to at least a given capacity.
@@ -45,7 +49,7 @@ public:
     ///   The name of the object.
     /// \return
     ///   The just created object.
-    Object<T> *createObject_back(char *name);
+    Object* createObject_back(char* name);
 
     /// \brief Push an existing object the end of the list.
     ///
@@ -54,7 +58,7 @@ public:
     ///   The name of the object.
     /// \return
     ///   The just created object.
-    Object<T> *push_back(Object<T> *);
+    Object* push_back(Object*);
 
     /// \brief Creates a new object at the start of the list.
     ///
@@ -64,7 +68,7 @@ public:
     ///   The name of the object.
     /// \return
     ///   The just created object.
-    Object<T> *createObject_front(char *name);
+    Object* createObject_front(char* name);
 
     /// \brief Destroys an object at a given position.
     ///
@@ -80,7 +84,9 @@ public:
     ///    Index of the queried object.
     /// \return
     ///    Object pointer at position or nullptr if there is no such object.
-    Object<T> *getAt(unsigned int position) const;
+    Object* getAt(unsigned int position);
+
+    Object* getAt(unsigned int position) const;
 
 
 private:
@@ -91,27 +97,28 @@ private:
     unsigned int m_capacity;
 
     /// The intern list of object pointer. A array of size m_capacity.
-    Object<T> **m_list;
+    Object** m_list = nullptr;
 
 public:
-    /// Implementiert den jeweils angegebenen und die verwandten Operatoren
     ///push_back element
-    DynamicObjectList<T> &operator+=(const Object<T> &a);
-
+    DynamicObjectList& operator+=(const Object&);
     ///push_back element
-    DynamicObjectList<T> &operator+=(Object<T> &);
+    DynamicObjectList& operator+=(Object&);
 
     ///merge lists, use multiset union semantic.
     ///e.g. [1,2,3,4,5,6]+=[2,5,9,9] returns [1,2,3,4,5,6,2,5,9,9]
-    DynamicObjectList<T> &operator|=(const DynamicObjectList<T> &);
+    DynamicObjectList& operator|=(const DynamicObjectList&);
 
     ///intersect lists
     ///e.g. [1,2,3,4,5,6,9,21]&=[2,5,9,9] returns [2,5,9,9]
-    DynamicObjectList<T> &operator&=(const DynamicObjectList<T> &);
+    DynamicObjectList& operator&=(const DynamicObjectList&);
+
+    ///subtract lists
+    /// -> this without any object existing in o
+    DynamicObjectList& operator/=(const DynamicObjectList&);
 
     ///get element @position i
     ///e.g. a[3] returns 3 for the list a=[0,1,2,3,4]
-    Object<T> &operator[](const unsigned int) const;
-
-    Object<T> &operator[](const unsigned int);
+    Object& operator[](const unsigned int) const;
+    Object& operator[](const unsigned int);
 };

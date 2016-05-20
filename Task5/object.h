@@ -1,94 +1,69 @@
 #pragma once
-
 #include <iostream>
-#include <cstring>
-#include <string>
 
-template<typename BERT>
+
 class Object {
 public:
-    Object<BERT>(const char *name, const BERT data);
-
-    Object<BERT>(const Object<BERT> &);
-
+    Object(const char* name);
+    Object(const Object&);
     ~Object();
 
     /// Returns ID which was passed in the constructor.
-    inline const char *GetName() const {
+    const char* getName() const {
         return m_name;
-    };
-
-    inline void setName(char *name) {
-        m_name = name;
     }
 
     /// Returns whether object is const or not
-    inline const char *GetType() const {
+    const char* getType() const {
         return "Const object";
-    };
+    }
 
-    inline const char *GetType() {
+    const char* getType() {
         return "not const";
-    };
-
-    inline void setData(BERT &data) {
-        mData = data;
     }
 
-    inline const BERT &getData() const {
-        return mData;
+    const inline std::string getData() const {
+        if(m_name == nullptr)
+            return std::string("");
+        return std::string(m_name);
     }
 
-    /// Implementiert den angegebenen und die verwandten Operatoren
-    bool operator==(Object<BERT> &o) {
-        if (std::string(m_name) != std::string(o.GetName()))
-            return false;
-        return mData == o.getData();
+    inline bool operator==(Object& o) const {
+        return getData() == o.getData();
     }
 
-    inline bool operator!=(Object &o) {
-        return *this != o;
+    inline bool operator!=(Object &o)  const {
+        return getData() != o.getData();
     }
 
-    inline bool operator<(Object &o) {
-        return mData < o.getData();
+    inline bool operator<(Object &o)  const {
+        return getData() < o.getData();
     }
 
-    inline bool operator<=(Object &o) {
-        return mData <= o.getData();
+    inline bool operator<=(Object &o)  const {
+        return getData() <= o.getData();
     }
 
-    inline bool operator>(Object &o) {
-        return mData > o.getData();
+    inline bool operator>(Object &o)  const {
+        return getData() > o.getData();
     }
 
-    inline bool operator>=(Object &o) {
-        return mData >= o.getData();
+    inline bool operator>=(Object &o)  const {
+        return getData() >= o.getData();
     }
 
     Object &operator+=(Object &o);
+//    none of these make sense
+//    Object &operator-=(Object &o);
+//    Object &operator*=(Object &o);
+//    Object &operator/=(Object &o);
+//    Object &operator%=(Object &o);
 
-    Object &operator-=(Object &o);
-
-    Object &operator*=(Object &o);
-
-    Object &operator/=(Object &o);
-
-    Object &operator%=(Object &o);
+    friend std::ostream& operator>> (std::ostream& stream, const Object&);
 
 private:
-    char *m_name;
-    BERT mData;
+    char* m_name;
 };
 
-template <typename BERT>
-std::ostream &operator<<(std::ostream &lhs, const Object<BERT> &rhs);
+std::ostream& operator<< (std::ostream& stream, const Object&);
 
-template <typename BERT>
-std::istream &operator>>(std::istream &lhs, Object<BERT> &rhs);
-
-template <typename BERT>
-bool operator<(Object<BERT> const &lhs, Object<BERT> const &rhs);
-
-template <typename BERT>
-bool operator>(Object<BERT> const &lhs, Object<BERT> const &rhs);
