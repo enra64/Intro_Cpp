@@ -1,13 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
-project(Task5)
+project(Task5_2)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O0")
 
-set(SOURCE_FILES
-    dynamicobjectlist.cpp
-    dynamicobjectlist.hpp
-    object.cpp
-    object.h
-    program.cpp)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
-add_executable(Task5 ${SOURCE_FILES})
+aux_source_directory(. SRC_LIST)
+add_executable(${PROJECT_NAME} ${SRC_LIST})
