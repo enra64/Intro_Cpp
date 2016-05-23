@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -g -Wall   CMakeFiles/Task7.dir/main.cpp.o  -o Task7 

@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task7/main.cpp
+myvector.h
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task7/myvector.h
+iostream
+-
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task7/myvector.h
+sstream
+-
+stdexcept
+-
+iostream
+-
+

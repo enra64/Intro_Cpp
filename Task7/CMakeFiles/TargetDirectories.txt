@@ -1,0 +1,3 @@
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task7/CMakeFiles/edit_cache.dir
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task7/CMakeFiles/rebuild_cache.dir
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task7/CMakeFiles/Task7.dir
