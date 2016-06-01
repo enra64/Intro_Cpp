@@ -36,7 +36,7 @@ int main()
 		Vector<3, double> b(a);
 		for(unsigned int i = 0; i < a.SIZE; ++i)
 		{
-			test(a[i] == a[i], "Copy construction failed.");
+			test(b[i] == a[i], "Copy construction failed.");
 		}
 	}
 
@@ -47,10 +47,10 @@ int main()
 		{
 			a[i] = rand();
 		}
-		Vector<3, double> b(a);
+		Vector<3, float> b(a);
 		for(unsigned int i = 0; i < a.SIZE; ++i)
 		{
-			test(a[i] == a[i], "Copy construction failed.");
+			test(b[i] == a[i], "Copy construction failed.");
 		}
 	}
 
@@ -65,7 +65,7 @@ int main()
 		Vector<5, int> b(static_cast<std::string>(a));
 		for(unsigned int i = 0; i < a.SIZE; ++i)
 		{
-			test(a[i] == a[i], "Conversion to string failed.");
+			test(b[i] == a[i], "Conversion to string failed.");
 		}
 	}
 
@@ -83,15 +83,22 @@ int main()
 		}
 	}
 	
+	
+	// mixin test start
+	
 	Vector<2, short> mixinTest("4 3");
-	//typedef EuclideanVector<2, short, Vector> AdvancedVector;
-
-    EuclideanVector<Vector<2, short>> bert; 
+	template<T, S>
+	using AdvancedVector = EuclideanVector<Vector<T, S>>;
+	typedef EuclideanVector<Vector<2, short>> AdvancedVector;
+    AdvancedVector bert; 
     
     bert[0] = 3;
     bert[1] = 4;
 
 	test(5 == bert.length(), " vec len mixin failed, expected 5, got " + std::to_string(bert.length()));
+
+    // mixin testing end
+    
 
 	// "Conclusion"
 	if(fail)

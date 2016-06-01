@@ -40,7 +40,7 @@ public:
 	template <typename oElement>
 	Vector(const Vector<Size, oElement>& o){
         for(unsigned int i = 0; i < Size; i++)
-            elements[i] = static_cast<Element>(o.elements[i]);
+            elements[i] = static_cast<Element>(o[i]);
     }
 
 	/// \brief Constructor that initializes the vector from a string.
