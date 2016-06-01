@@ -82,6 +82,16 @@ int main()
 			    "Add operator failed, expected " + std::to_string(a[i] + b[i]) + ", got " + std::to_string(x[i]));
 		}
 	}
+	
+	Vector<2, short> mixinTest("4 3");
+	//typedef EuclideanVector<2, short, Vector> AdvancedVector;
+
+    EuclideanVector<Vector<2, short>> bert; 
+    
+    bert[0] = 3;
+    bert[1] = 4;
+
+	test(5 == bert.length(), " vec len mixin failed, expected 5, got " + std::to_string(bert.length()));
 
 	// "Conclusion"
 	if(fail)

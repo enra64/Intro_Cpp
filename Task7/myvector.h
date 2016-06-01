@@ -3,7 +3,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <iostream>
-
+#include <math.h>
 
 /// \brief Mixin for calculating the length (euclidian norm / distance) of a vector
 // BONUS: Implement a mixin that calculates the length of a vector.
@@ -97,7 +97,18 @@ public:
 		SIZE = Size
 	};
 
-private:
+protected:
 	/// Intern data representation.
 	Element elements[Size];
+};
+
+template <typename Base>
+class EuclideanVector : public Base {
+public:
+    double length () const {
+        double sum = 0;
+        for(unsigned int i = 0; i < this->SIZE; i++)
+            sum += pow(this->elements[i], 2);
+        return sqrt(sum);
+    }
 };

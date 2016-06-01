@@ -13,33 +13,33 @@
 // Planet, Spaceship and Deathstar are all be targets. 
 
 // Target.
-// Every Target has a position and name. 
-// Each target can be attacked and can explode
-// Exploding cannot be triggered from outside the class. (only through receiving damage)
-// Should have a stream out operator. 
-// Can be purely virtual (abstract).
+//      Every Target has a position and name. 
+//      Each target can be attacked and can explode
+//      Exploding cannot be triggered from outside the class. (only through receiving damage)
+//      Should have a stream out operator. 
+//      Can be purely virtual (abstract).
 
 // Planet
-// Inherits from Target
-// Can only be destroyed be Deathstars.
-// Planets cannot attack
+//      Inherits from Target
+//      Can only be destroyed be Deathstars.
+//      Planets cannot attack
 
 // Spaceship
-// Inherits from Target
-// Has a number of lasers
-// Has shields (percentage)
-// Can attack other targets
-// When attacked, shields are damaged. When shields <= 0, it explodes.
+//      Inherits from Target
+//      Has a number of lasers
+//      Has shields (percentage)
+//      Can attack other targets
+//      When attacked, shields are damaged. When shields <= 0, it explodes.
 
 // Deathstar
-// Inherits from Spaceship
-// Has far higher shields
-// Can be damaged by spaceships with a 25% chance of exploding directly (without needing to get the shields to zero).
+//      Inherits from Spaceship
+//      Has far higher shields
+//      Can be damaged by spaceships with a 25% chance of exploding directly (without needing to get the shields to zero).
 //        (- the reactor core can be hit through the exhaust vent. ;) )       
 
 
 int main()
 {
-    
+ srand(time(0));   
 
 }
