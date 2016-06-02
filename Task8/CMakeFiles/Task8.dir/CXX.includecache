@@ -7,4 +7,26 @@
 #IncludeRegexTransform: 
 
 /run/media/arne/data/Studium/Semester 4/Intro C++/Task8/program.cpp
+random
+-
+target.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task8/target.hpp
+unittests.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task8/unittests.hpp
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task8/target.hpp
+random
+-
+string
+-
+iostream
+-
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task8/unittests.hpp
+target.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task8/target.hpp
+iostream
+-
+fstream
+-
 

@@ -1,98 +1,132 @@
-template <typename P>
-struct Vec<P> {
-    Vector(){
-        x = 0;
-        y = 0;
-    }
-    
-    Vector(double _x, double _y) : x(_x), y(_y) {
-    }
-    
+#include <random>
+#include <string>
+#include <iostream>
+
+#ifndef _TARGET
+#define _TARGET
+
+struct Vec2d {
     double x, y;
-}
+};
+
 class Target {
 public:
-    Target(std::string name, int health, double x, double y) : mHealth(health), mName(name) {
+    Target(std::string name, int health = 100, double x = 0, double y = 0) : 
+        mHull(health), 
+        mName(name) {
         mPosition.x = x;
         mPosition.y = y;
     }
     
-    virtual int attacked(const Spaceship& s){
-        mHealth -= 34;
-        if(mHealth <= 0)
-            explode();
-        return mHealth;
+    friend std::ostream &operator<<(std::ostream &lhs, const Target &t){
+        lhs << t.mName << " mit " << t.mHull << " Leben an Position " << t.mPosition.x << ":" << t.mPosition.y;
+        return lhs;
     }
     
-    friend std::ostream &operator<<(std::ostream &lhs, const Target &rhs){
-        lhs << mName << " mit " << mHealth << " Leben an Position " << mPosition.x << ":" << mPosition.y;
+    virtual int getHealth() const {
+        return mHull;
     }
     
+    inline int getHull() const {
+        return mHull;
+    }
+    
+    inline bool isDestroyed() const {
+        return mIsExploded;
+    }
+    
+    inline const std::string& getName() const {
+        return mName;
+    }
+    
+    virtual int receiveDamage(const Target& t) = 0;
+
 protected:
-    virtual void explode() = 0;
-    int mHealth;
+    inline void explode() {
+        std::cout << mName << " exploded" << std::endl;
+        mIsExploded = true;
+    }
+    
+    int mHull;
+    bool mIsExploded = false;
     Vec2d mPosition;
     std::string mName;
-}
-
-class Planet : public Target {
-public:
-    Planet(std::string name, double x, double y) : Target(name, 3000, x, y){
-    
-    }
-
-    int attacked(const Spaceship& s) override {
-        return mHealth;
-    }
-    
-    int attacked(const DeathStar& s) override {
-        mHealth = 0;
-        if(mHealth <= 0)
-            explode();
-        return mHealth;
-    }
-protected:
-
-}
+};
 
 class Spaceship : public Target {
 public:
-    Spaceship(std::string name, double x, double y, size_t laserCount) : Target(name, x, y), mNumberOfLasers(laserCount) {
+    Spaceship(std::string name, double x = 0, double y = 0, size_t lasers = 100, int health = 100) : 
+    Target(name, health, x, y), 
+    mNumberOfLasers(lasers) {
         
     }
     
-    int attacked(const Spaceship& s) override {
-        mShields -= 12;
-        if(mShields <= 0)
-            mHealth -= 32;
-        if(mHealth <= 0 && mShields <= 0)
-            explode();
-        return mHealth;
+    int getHealth() const override {
+        return (mShields < 0 ? 0 : mShields) + (mHull < 0 ? 0 : mHull);
     }
     
-    void attack(Target& t){
-        t.attacked(*this);
+    /// return damage made
+    int attack(Target& t) const {
+        std::cout << mName << " attacked " << t.getName() << std::endl;
+        int oldHealth = t.getHealth();
+        return oldHealth - t.receiveDamage(*this);
     }
     
+    inline int getShields() const {
+        return mShields;
+    }
+    
+    int receiveDamage(const Target& s) override {
+        if(nullptr != dynamic_cast<const Spaceship*>(&s)){
+            mShields -= 12;
+            if(mShields <= 0)
+                mHull -= 32;
+            if(mHull <= 0 && mShields <= 0)
+                explode();
+        }
+        return getHealth();
+    }
 protected:
     size_t mNumberOfLasers;
-    double mShields = 100;
-}
+    double mShields = 10;
+};
 
 class DeathStar : public Spaceship {
-    DeathStar(double x, double y, size_t laserCount) :
+public:
+    DeathStar(double x = 0, double y = 0, size_t laserCount = 380000) :
     Spaceship("Todesstern x", x, y, laserCount){
-        mShields = 3000;
+        mShields = 100;
     }
     
-    int attacked(const Spaceship& s) override {
-        mShields -= 12;
-        if(!(rand() % 4))
-            mHealth = 0;
-        if(mShields <= 0)
-            mHealth -= 32;
-        if(mHealth <= 0 && mShields <= 0)
-            explode();
-        return mHealth;
+    int receiveDamage(const Target& s) override {
+        if(nullptr != dynamic_cast<const Spaceship*>(&s)){
+            mShields -= 12;
+            if(mShields <= 0)
+                mHull -= 32;
+            bool explodeNow = (rand() % 4) == 1;
+            if(explodeNow)
+                explode();
+            if(mHull <= 0 && mShields <= 0)
+                explode();
+        }
+        return mHull;
     }
-}
+};
+
+class Planet : public Target {
+public:
+    Planet(std::string name, double x = 0, double y = 0) : Target(name, 3000, x, y){
+    
+    }
+    
+    int receiveDamage(const Target& s) override {
+        if(nullptr == dynamic_cast<const DeathStar*>(&s))
+            return mHull;
+        mHull = 0;
+        if(mHull <= 0)
+            explode();
+        return mHull;
+    }
+};
+
+#endif

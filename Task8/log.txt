@@ -1,0 +1,20 @@
+targets ok
+########################
+
+ok: normal spaceships do not do damage to planets
+ok: deathstar dealt damage to planet
+planets ok
+########################
+
+ok: spaceship could damage other spaceship
+ok: shield damage ok
+ok: hull damage ok
+ok: ship destroyed
+spaceships ok
+########################
+
+ok: deathstar exploded with health down
+ok: deathstar random exploded kicked in
+deathstar ok
+########################
+
