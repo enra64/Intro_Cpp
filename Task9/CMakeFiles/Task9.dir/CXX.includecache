@@ -1,0 +1,62 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/consolepolicy.cpp
+iostream
+-
+consolepolicy.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/consolepolicy.hpp
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/consolepolicy.hpp
+policy.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/policy.hpp
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/filepolicy.cpp
+iostream
+-
+filepolicy.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/filepolicy.hpp
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/filepolicy.hpp
+policy.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/policy.hpp
+fstream
+-
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/logger.cpp
+ctime
+-
+logger.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/logger.hpp
+policy.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/policy.hpp
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/logger.hpp
+sstream
+-
+memory
+-
+vector
+-
+policy.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/policy.hpp
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/policy.hpp
+string
+-
+
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/program.cpp
+logger.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/logger.hpp
+filepolicy.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/filepolicy.hpp
+consolepolicy.hpp
+/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/consolepolicy.hpp
+type_traits
+-
+

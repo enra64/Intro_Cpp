@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -g -Wall   CMakeFiles/Task9.dir/program.cpp.o CMakeFiles/Task9.dir/consolepolicy.cpp.o CMakeFiles/Task9.dir/filepolicy.cpp.o CMakeFiles/Task9.dir/logger.cpp.o  -o Task9 

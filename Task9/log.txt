@@ -1,0 +1,3 @@
+
+Mon Jun  6 13:19:15 2016  [/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/program.cpp : 13]<level 2> Created important static object.
+Mon Jun  6 13:19:15 2016  [/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/program.cpp : 29]<level 1> Reached entry point.Mon Jun  6 13:19:15 2016  [/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/program.cpp : 40]<error>   Error code: 42 -   Maybe it was just an error code and not an answer!Mon Jun  6 13:19:15 2016  [/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/program.cpp : 42]<level 1> Reached end of program.Mon Jun  6 13:19:15 2016  [/run/media/arne/data/Studium/Semester 4/Intro C++/Task9/program.cpp : 14]<level 2> Destroyed important static object.
